@@ -19,8 +19,8 @@ pub struct Request {
 
 #[derive(Debug, Deserialize)]
 pub struct NLU {
-        tokens: Vec<String>,
-        intents: Intents
+        pub tokens: Vec<String>,
+        pub intents: Intents
 }
 
 #[derive(Debug, Serialize)]

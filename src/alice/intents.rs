@@ -5,33 +5,34 @@ use serde::{Serialize, Deserialize};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Intents{
-        exchange_rate: ExchangeRateIntent
+        pub exchange_rate: Option<ExchangeRateIntent>
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-struct ExchangeRateIntent {
-        slots: ExchangeRateSlots
+pub struct ExchangeRateIntent {
+        pub slots: ExchangeRateSlots
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-struct ExchangeRateSlots {
-        currency: Slot 
+pub struct ExchangeRateSlots {
+        pub symbol_1: Slot,
+        pub symbol_2: Slot
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-struct Slot {
-        type_: String,
-        value: serde_json::Value
+pub struct Slot {
+        pub type_: String,
+        pub value: serde_json::Value
 }
 
 impl Slot {
-        fn string(&self) -> String {
+        pub fn string(&self) -> String {
                 let val = self.value.as_str().unwrap();
 
                 String::from(val)
         }
 
-        fn number(&self) -> i64 {
+        pub fn number(&self) -> i64 {
                 let val = self.value.as_i64().unwrap();
 
                 val
