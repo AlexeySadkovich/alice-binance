@@ -10,7 +10,7 @@ use reqwest::Request;
 use std::borrow::Borrow;
 use std::ops::Deref;
 
-#[actix_rt::main]
+#[actix_web::main]
 async fn main() -> std::io::Result<()> {
     let port = 8080;
     let token = args().nth(1).expect("Please specify a token");
