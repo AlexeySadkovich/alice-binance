@@ -8,7 +8,7 @@ pub struct APIv3 {
         client: reqwest::Client,
 }
 
-static URL: &str = "https://api.binance.com/api/v3/";
+static URL: &str = "https://api.binance.com/api/v3";
 
 impl APIv3 {
         pub fn new(token: String) -> APIv3 {
@@ -23,8 +23,7 @@ impl APIv3 {
                 let mut response = request.send().await.unwrap();
                 let json = response.text().await.unwrap();
 
-
-                let data: TicketPriceData = serde_json::from_str(&json).unwrap();
+                let data = serde_json::from_str::<TicketPriceData>(&*json).unwrap();
 
                 self.parse_price(data.price)
         }
